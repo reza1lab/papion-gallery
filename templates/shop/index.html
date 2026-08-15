@@ -232,45 +232,37 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Featured Product -->
     <section class="bg-light">
         <div class="container py-5">
+
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">محصول ویژه</h1>
                     <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطر.
+                         لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
                     </p>
                 </div>
             </div>
+
             <div class="row">
+
+                {% for product in products %}
+
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="{% static 'shop-single.html' %}">
-                            <img src="{% static 'shop/assets/img/feature_prod_01.jpg' %}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between padd-rl-0">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">240,000</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">باشگاه بدنسازی</a>
-                            <p class="card-text">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ .
-                            </p>
-                            <p class="text-muted">نظرات (24)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
+
                         <a href="#">
-                            <img src="{% static 'shop/assets/img/feature_prod_02.jpg' %}" class="card-img-top" alt="...">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}"
+                                    class="card-img-top"
+                                    alt="{{ product.name }}">
+                            {% else %}
+                                <img src="{% static 'shop/assets/img/feature_prod_01.jpg' %}"
+                                    class="card-img-top"
+                                    alt="{{ product.name }}">
+                            {% endif %}
                         </a>
+
                         <div class="card-body">
+
                             <ul class="list-unstyled d-flex justify-content-between padd-rl-0">
                                 <li>
                                     <i class="text-warning fa fa-star"></i>
@@ -279,41 +271,39 @@ https://templatemo.com/tm-559-zay-shop
                                     <i class="text-muted fa fa-star"></i>
                                     <i class="text-muted fa fa-star"></i>
                                 </li>
-                                <li class="text-muted text-right">480,000</li>
-                            </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">کفش نایک ابری</a>
-                            <p class="card-text">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ .
-                            </p>
-                            <p class="text-muted">نظرات (48)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="shop-single.html">
-                            <img src="{% static 'shop/assets/img/feature_prod_03.jpg' %}" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between padd-rl-0">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
+
+                                <li class="text-muted text-right">
+                                    {{ product.price|floatformat:0 }} تومان
                                 </li>
-                                <li class="text-muted text-right">360,000</li>
                             </ul>
-                            <a href="shop-single.html" class="h2 text-decoration-none text-dark">کفش تابستانی آدیداس</a>
+
+                            <a href="#" class="h2 text-decoration-none text-dark">
+                                {{ product.name }}
+                            </a>
+
                             <p class="card-text">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ .
+                                {{ product.description }}
                             </p>
-                            <p class="text-muted">نظرات (74)</p>
+
+                            <p class="text-muted">
+                                 دسته‌بندی: {{ product.category }}
+                            </p>
+
                         </div>
+
                     </div>
                 </div>
+
+                {% empty %}
+
+                <div class="col-12 text-center">
+                    <p>هنوز محصولی ثبت نشده است.</p>
+                </div>
+
+                {% endfor %}
+
             </div>
+
         </div>
     </section>
     <!-- End Featured Product -->

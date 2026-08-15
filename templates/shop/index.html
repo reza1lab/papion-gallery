@@ -1,7 +1,7 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-
-{% load static %}
 
 <head>
     <title>فروشگاه زی</title>
@@ -249,7 +249,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
 
-                        <a href="#">
+                        <a href="{% url 'product_detail' product.id %}">
                             {% if product.image %}
                                 <img src="{{ product.image.url }}"
                                     class="card-img-top"
@@ -276,8 +276,7 @@ https://templatemo.com/tm-559-zay-shop
                                     {{ product.price|floatformat:0 }} تومان
                                 </li>
                             </ul>
-
-                            <a href="#" class="h2 text-decoration-none text-dark">
+                            <a href="{% url 'product_detail' product.id %}" class="h2 text-decoration-none text-dark">
                                 {{ product.name }}
                             </a>
 
